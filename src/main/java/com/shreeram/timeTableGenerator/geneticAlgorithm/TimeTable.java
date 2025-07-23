@@ -1,10 +1,12 @@
 package com.shreeram.timeTableGenerator.geneticAlgorithm;
+import java.time.DayOfWeek;
 import java.util.*;
 
 import com.shreeram.timeTableGenerator.entity.Classes;
 import com.shreeram.timeTableGenerator.entity.Module;
 import com.shreeram.timeTableGenerator.entity.ModuleElement;
 import com.shreeram.timeTableGenerator.entity.Teacher;
+import com.shreeram.timeTableGenerator.entity.enums.Period;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -23,16 +25,16 @@ public class TimeTable {
     }
 
 
-	//    public boolean hasConflict(int classIndex, DayOfWeek day, Period period) {
-//        List<ModuleElement> classSchedule = timeTabels.get(classIndex);
-//        for (ModuleElement element : classSchedule) {
-//        	 if (element.getDay().equals(day) && element.getPeriod().equals(period)) {
-//                return true;
-//            }
-//        }
-//        return false;
-//    }
-//	
+	    public boolean hasConflict(int classIndex, DayOfWeek day, Period period) {
+        List<ModuleElement> classSchedule = timeTabels.get(classIndex);
+        for (ModuleElement element : classSchedule) {
+        	 if (element.getDay().equals(day) && element.getPeriod().equals(period)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
 	public List<Teacher> getTeachers(){
 		List<Teacher> teachers = new ArrayList<>();
 		for(List<ModuleElement> timeTable : timeTabels) {
@@ -72,9 +74,9 @@ public class TimeTable {
 		
 		unSatisfiedCriterias += criterias.isClassroomOccupancySatisfied();
 		
-		//unSatisfiedCriterias += criterias.areElementsAdjacent();
+		unSatisfiedCriterias += criterias.areElementsAdjacent();
 		
-//		unSatisfiedCriterias += criterias.areElementsInTheSamePeriod();
+		unSatisfiedCriterias += criterias.areElementsInTheSamePeriod();
 		
 		this.fitness = unSatisfiedCriterias;
 		

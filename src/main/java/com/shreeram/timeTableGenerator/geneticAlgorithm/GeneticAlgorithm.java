@@ -23,8 +23,7 @@ public class GeneticAlgorithm {
 	Random random = new Random();
 	private List<TimeTable> population;
 	private boolean isTerminated;
-	
-	
+
 	public GeneticAlgorithm() {
 		this.population = new ArrayList<>(POPULATION_SIZE);
 		this.isTerminated = false;
@@ -57,7 +56,6 @@ public class GeneticAlgorithm {
 	            seenModules.add(moduleLabel);
 	        }
 	    }
-
 	    return false; 
 	}
 	
@@ -75,10 +73,7 @@ public class GeneticAlgorithm {
 	    return false;
 	}
 
-	
 
-
-	
 	private DayOfWeek getRandomDay() {
         int index = random.nextInt(days.size());
         return days.get(index);
@@ -110,9 +105,6 @@ public class GeneticAlgorithm {
             }
         }
     }
-
-	
-
 
 	public void initializePopulation() {
 	    for (int i = 0; i < POPULATION_SIZE; i++) {
@@ -276,7 +268,6 @@ public class GeneticAlgorithm {
                 ModuleElement element1 = parent1Timetable.get(i);
                 ModuleElement element2 = parent2Timetable.get(i);
 
-                // Çakışma kontrolü ve çocuk bireylerin oluşturulması
                 if (!hasConflictInClass(child1Timetable, element1.getDay(), element1.getPeriod())) {
                     child1Timetable.add(element1);
                 }
